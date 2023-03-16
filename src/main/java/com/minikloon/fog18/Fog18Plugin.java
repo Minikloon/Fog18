@@ -19,6 +19,14 @@ public class Fog18Plugin extends JavaPlugin {
     public void onEnable() {
         super.onEnable();
 
+        registerCommand("gamestate", (player, args) -> {
+            byte reason = Byte.parseByte(args[0]);
+            float value = Float.parseFloat(args[1]);
+            EntityPlayer nmsPlayer = ((CraftPlayer) player).getHandle();
+            nmsPlayer.playerConnection.sendPacket(new PacketPlayOutGameStateChange(reason, value));
+            player.sendMessage(ChatColor.YELLOW + "Sent game state to " + ChatColor.GREEN + reason + ChatColor.YELLOW + " and " + ChatColor.RED + value);
+        });
+
         registerCommand("fog", (player, args) -> {
             float value = Float.parseFloat(args[0]);
             EntityPlayer nmsPlayer = ((CraftPlayer) player).getHandle();
@@ -34,7 +42,7 @@ public class Fog18Plugin extends JavaPlugin {
             nmsPlayer.playerConnection.sendPacket(new PacketPlayOutGameStateChange(2, 0));
             nmsPlayer.playerConnection.sendPacket(new PacketPlayOutGameStateChange(8, 10f));
             nmsPlayer.playerConnection.sendPacket(new PacketPlayOutGameStateChange(7, value));
-            player.sendMessage(ChatColor.YELLOW + "Sent deep rain game state to " + ChatColor.AQUA + value);
+            player.sendMessage(ChatColor.YELLOW + "Sent deep rain game state to " + ChatColor.DARK_BLUE + value);
         });
 
         int[] around = {-2, -1, 0, 1, 2};
@@ -66,6 +74,10 @@ public class Fog18Plugin extends JavaPlugin {
                 player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, Integer.MAX_VALUE / 2, 9));
                 player.sendMessage(ChatColor.YELLOW + "Night Vision turned " + ChatColor.GREEN + "ON" + ChatColor.YELLOW + "!");
             }
+        });
+
+        registerCommand("nvtick", (player, args) -> {
+            player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 5 * 20, 9));
         });
 
         registerCommand("env", (player, args) -> {

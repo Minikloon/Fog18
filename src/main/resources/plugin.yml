@@ -3,6 +3,9 @@ main: com.minikloon.fog18.Fog18Plugin
 version: 1.0
 
 commands:
+  gamestate:
+    description: Send a game state packet
+    usage: /gamestate reason value
   fog:
     description: Send fog packet
     usage: /fog [value]
@@ -20,6 +23,9 @@ commands:
     aliases:
       - nv
     usage: /nightvision
+  nvtick:
+    description: Sends night vision for a few ticks
+    usage: /nvtick
   env:
     description: Sends you to a world with a particular environment
     usage: /end [environment index]
