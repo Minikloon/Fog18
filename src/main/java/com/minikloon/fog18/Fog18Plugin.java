@@ -28,6 +28,15 @@ public class Fog18Plugin extends JavaPlugin {
             player.sendMessage(ChatColor.YELLOW + "Sent rain game state to " + ChatColor.AQUA + value);
         });
 
+        registerCommand("deepfog", (player, args) -> {
+            float value = Float.parseFloat(args[0]);
+            EntityPlayer nmsPlayer = ((CraftPlayer) player).getHandle();
+            nmsPlayer.playerConnection.sendPacket(new PacketPlayOutGameStateChange(2, 0));
+            nmsPlayer.playerConnection.sendPacket(new PacketPlayOutGameStateChange(8, 10f));
+            nmsPlayer.playerConnection.sendPacket(new PacketPlayOutGameStateChange(7, value));
+            player.sendMessage(ChatColor.YELLOW + "Sent deep rain game state to " + ChatColor.AQUA + value);
+        });
+
         int[] around = {-2, -1, 0, 1, 2};
         registerCommand("biome", (player, args) -> {
             Biome biome = Biome.valueOf(args[0].toUpperCase());

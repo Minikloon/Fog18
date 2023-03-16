@@ -6,6 +6,9 @@ commands:
   fog:
     description: Send fog packet
     usage: /fog [value]
+  deepfog:
+    description: Send fog packet with a different 8
+    usage: /deepfog [value]
   biome:
     description: Sets the biome around you
     usage: /biome [enum]
