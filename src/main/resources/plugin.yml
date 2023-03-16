@@ -1,0 +1,22 @@
+name: Fog18
+main: com.minikloon.fog18.Fog18Plugin
+version: 1.0
+
+commands:
+  fog:
+    description: Send fog packet
+    usage: /fog [value]
+  biome:
+    description: Sets the biome around you
+    usage: /biome [enum]
+  blindness:
+    description: Give you blindness
+    usage: /blindness [duration]
+  nightvision:
+    description: Toggles night vision
+    aliases:
+      - nv
+    usage: /nightvision
+  env:
+    description: Sends you to a world with a particular environment
+    usage: /end [environment index]
